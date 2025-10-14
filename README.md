@@ -1,6 +1,10 @@
 # 🎓 BÀI TẬP LỚN NHÓM 13 MÔN TRÍ TUỆ NHÂN TẠO
 ## Pacman AI Game - 18 Thuật toán AI
 
+![Pacman AI Demo](images/demo.gif)
+
+> **🚀 Trải nghiệm game Pacman với 18 thuật toán AI tiên tiến - từ tìm kiếm cơ bản đến học máy!**
+
 **Nhóm thực hiện:**  
 - **Nguyễn Minh Quốc Khánh** - MSSV: 23110113  
 - **Nguyễn Hưng Nguyên** - MSSV: 23110135  
@@ -30,6 +34,12 @@ Pacman AI phải di chuyển trong mê cung để:
 - Tránh hoặc săn đuổi ghosts (tùy vào power mode)
 - Tối đa hóa điểm số và hoàn thành nhiều level
 - Thể hiện hiệu quả của từng thuật toán AI
+
+## 🎬 DEMO CHƯƠNG TRÌNH
+
+![Demo Tổng Quan - Pacman AI Game](images/demo.gif)
+
+*Minh họa tổng quan gameplay và menu chọn thuật toán AI*
 
 ---
 
@@ -118,26 +128,58 @@ python sound_manager.py
 
 ## 🧠 18 THUẬT TOÁN AI ĐÃ TRIỂN KHAI
 
-| STT | Tên thuật toán | Loại | Mô tả & Ưu điểm |
-|-----|----------------|------|-----------------|
-| 1 | **BFS** | Tìm kiếm không thông tin | Breadth-First Search - Tìm đường đi ngắn nhất |
-| 2 | **DFS** | Tìm kiếm không thông tin | Depth-First Search - Khám phá sâu |
-| 3 | **UCS** | Tìm kiếm không thông tin | Uniform Cost Search - Tối ưu chi phí |
-| 4 | **IDS** | Tìm kiếm không thông tin | Iterative Deepening Search - Kết hợp BFS & DFS |
-| 5 | **IDL** | Tìm kiếm không thông tin | Iterative Deepening Limited - Giới hạn độ sâu |
-| 6 | **Greedy** | Tìm kiếm có thông tin | Greedy Best-First - Nhanh nhưng không tối ưu |
-| 7 | **A*** | Tìm kiếm có thông tin | A-star - Tối ưu và hiệu quả |
-| 8 | **Hill Climbing** | Tìm kiếm cục bộ | Leo đồi - Đơn giản, có thể bị kẹt |
-| 9 | **Simulated Annealing** | Tìm kiếm cục bộ | Luyện kim mô phỏng - Thoát khỏi cực trị |
-| 10 | **Beam Search** | Tìm kiếm cục bộ | Tìm kiếm chùm - Cân bằng tốc độ và chất lượng |
-| 11 | **Minimax** | Tìm kiếm đối kháng | Tối ưu trong game 2 người |
-| 12 | **Alpha-Beta** | Tìm kiếm đối kháng | Minimax với cắt tỉa - Nhanh hơn |
-| 13 | **Expectimax** | Tìm kiếm đối kháng | Xử lý yếu tố ngẫu nhiên |
-| 14 | **Genetic** | Tìm kiếm tiến hóa | Thuật toán di truyền - Tối ưu toàn cục |
-| 15 | **AND-OR Planning** | Tìm kiếm planning | Lập kế hoạch có điều kiện |
-| 16 | **Backtracking** | CSP | Quay lui - Giải ràng buộc |
-| 17 | **Forward Checking** | CSP | Kiểm tra tiến - CSP hiệu quả |
-| 18 | **AC-3** | CSP | Arc Consistency - Giảm miền giá trị |
+### 🔍 TÌM KIẾM KHÔNG CÓ THÔNG TIN
+
+| STT | Thuật toán | Mô tả & Ưu điểm | Demo |
+|-----|------------|-----------------|------|
+| 1 | **BFS** - Breadth-First Search | Tìm đường đi ngắn nhất | ![BFS Demo](images/BFS.gif) |
+| 2 | **DFS** - Depth-First Search | Khám phá sâu, tiết kiệm bộ nhớ | ![DFS Demo](images/DFS.gif) |
+| 3 | **UCS** - Uniform Cost Search | Tối ưu chi phí đường đi | ![UCS Demo](images/UCS.gif) |
+| 4 | **IDS** - Iterative Deepening Search | Kết hợp ưu điểm BFS & DFS | ![IDS Demo](images/IDS.gif) |
+| 5 | **IDL** - Iterative Deepening Limited | Giới hạn độ sâu tìm kiếm | ![IDL Demo](images/IDL.gif) |
+
+### 🎯 TÌM KIẾM CÓ THÔNG TIN
+
+| STT | Thuật toán | Mô tả & Ưu điểm | Demo |
+|-----|------------|-----------------|------|
+| 6 | **Greedy** - Greedy Best-First | Nhanh nhưng không tối ưu | ![Greedy Demo](images/Greedy.gif) |
+| 7 | **A*** - A-star Search | Tối ưu và hiệu quả nhất | ![A* Demo](images/A_SAO.gif) |
+
+### 🏔️ TÌM KIẾM CỤC BỘ
+
+| STT | Thuật toán | Mô tả & Ưu điểm | Demo |
+|-----|------------|-----------------|------|
+| 8 | **Hill Climbing** | Leo đồi - đơn giản nhưng có thể bị kẹt | ![Hill Climbing Demo](images/Hill.gif) |
+| 9 | **Simulated Annealing** | Luyện kim mô phỏng - thoát cực trị | ![Simulated Annealing Demo](images/simulated.gif) |
+| 10 | **Beam Search** | Tìm kiếm chùm - cân bằng tốc độ/chất lượng | ![Beam Search Demo](images/beam%20search.gif) |
+
+### 🎮 TÌM KIẾM ĐỐI KHÁNG
+
+| STT | Thuật toán | Mô tả & Ưu điểm | Demo |
+|-----|------------|-----------------|------|
+| 11 | **Minimax** | Tối ưu trong game đối kháng | ![Minimax Demo](images/minimax.gif) |
+| 12 | **Alpha-Beta** | Minimax với cắt tỉa - hiệu quả hơn | ![Alpha-Beta Demo](images/alpha.gif) |
+| 13 | **Expectimax** | Xử lý yếu tố ngẫu nhiên trong game | ![Expectimax Demo](images/expectlmax.gif) |
+
+### 🧬 TÌM KIẾM TIẾN HÓA
+
+| STT | Thuật toán | Mô tả & Ưu điểm | Demo |
+|-----|------------|-----------------|------|
+| 14 | **Genetic Algorithm** | Thuật toán di truyền - tối ưu toàn cục | ![Genetic Demo](images/genetic.gif) |
+
+### 🔒 TÌM KIẾM CSP (Constraint Satisfaction)
+
+| STT | Thuật toán | Mô tả & Ưu điểm | Demo |
+|-----|------------|-----------------|------|
+| 15 | **Backtracking** | Quay lui - giải ràng buộc cơ bản | ![Backtracking Demo](images/backtracking.gif) |
+| 16 | **Forward Checking** | Kiểm tra tiến - CSP hiệu quả | ![Forward Checking Demo](images/fowardchecking.gif) |
+| 17 | **AC-3** - Arc Consistency | Giảm miền giá trị, tăng hiệu quả | ![AC-3 Demo](images/AC3.gif) |
+
+### 🌳 TÌM KIẾM PLANNING
+
+| STT | Thuật toán | Mô tả & Ưu điểm | Demo |
+|-----|------------|-----------------|------|
+| 18 | **AND-OR Planning** | Lập kế hoạch có điều kiện | ![AND-OR Demo](images/and%20or%20tree.gif) |
 
 ---
 
@@ -167,18 +209,41 @@ python sound_manager.py
 ## 📁 CẤU TRÚC FILE CODE
 
 ```
-cuoi_ky_ttnt/
-├── main.py              # File chính - entry point của game
-├── game.py              # Game engine - logic chính của game
-├── pacman.py            # Pacman AI - 18 thuật toán AI (FILE QUAN TRỌNG)
-├── ghost.py             # Ghost AI - hành vi của ghosts
-├── constants.py         # Hằng số, enum, cấu hình game
-├── sound_manager.py     # Quản lý âm thanh
-├── csp_algorithms.py    # Thuật toán CSP chuyên biệt
-├── build_pacman.py      # Utilities để build game
-├── create_pacman.py     # Tạo các thành phần game
-├── extract_game.py      # Trích xuất dữ liệu game
-└── README.md           # File này
+Nhom13_PacmanAI/
+├── main.py              # File chính để chạy game (team entry point)
+├── README.md           # Tài liệu dự án này
+├── images/             # Thư mục chứa 19 GIF demo thuật toán
+│   ├── A_SAO.gif       # Demo thuật toán A*
+│   ├── AC3.gif         # Demo thuật toán AC-3
+│   ├── BFS.gif         # Demo thuật toán BFS
+│   ├── DFS.gif         # Demo thuật toán DFS
+│   ├── Greedy.gif      # Demo thuật toán Greedy
+│   ├── Hill.gif        # Demo thuật toán Hill Climbing
+│   ├── UCS.gif         # Demo thuật toán UCS
+│   ├── alpha.gif       # Demo thuật toán Alpha-Beta
+│   ├── and or tree.gif # Demo thuật toán AND-OR Planning
+│   ├── backtracking.gif # Demo thuật toán Backtracking
+│   ├── beam search.gif # Demo thuật toán Beam Search
+│   ├── demo.gif        # Demo tổng quan game
+│   ├── expectlmax.gif  # Demo thuật toán Expectimax
+│   ├── fowardchecking.gif # Demo thuật toán Forward Checking
+│   ├── genetic.gif     # Demo thuật toán Genetic
+│   ├── IDS.gif         # Demo thuật toán IDS
+│   ├── IDL.gif         # Demo thuật toán IDL
+│   ├── minimax.gif     # Demo thuật toán Minimax
+│   └── simulated.gif   # Demo thuật toán Simulated Annealing
+└── cuoi_ky_ttnt/      # Module game Pacman AI
+    ├── main.py              # File chính - entry point của game
+    ├── game.py              # Game engine - logic chính của game
+    ├── pacman.py            # Pacman AI - 18 thuật toán AI (FILE QUAN TRỌNG)
+    ├── ghost.py             # Ghost AI - hành vi của ghosts
+    ├── constants.py         # Hằng số, enum, cấu hình game
+    ├── sound_manager.py     # Quản lý âm thanh
+    ├── csp_algorithms.py    # Thuật toán CSP chuyên biệt
+    ├── build_pacman.py      # Utilities để build game
+    ├── create_pacman.py     # Tạo các thành phần game
+    ├── extract_game.py      # Trích xuất dữ liệu game
+    └── README.md           # Tài liệu module core
 ```
 
 ---
@@ -296,12 +361,12 @@ python main.py
 
 Nếu gặp vấn đề khi chạy code hoặc cần giải thích thêm về thuật toán:
 - **Nhóm 13**: Pacman AI Development Team
-- **Email nhóm**: [pacman.ai.group13@student.edu.vn]
+- **Email nhóm**: [23110113@student.hcmute.edu.vn]
 
 **Cảm ơn cô đã xem xét bài tập! 🙏**
 
----
 
-*Bài tập này được thực hiện với mục đích học tập và nghiên cứu. Tất cả code được viết tự tay, tham khảo tài liệu học thuật và best practices trong AI game development.*
+
+*Bài tập này được thực hiện với mục đích học tập và nghiên cứu.*
 
 **🎮 CHÚC CÔ CHẤM BÀI VUI VẺ VÀ TRẢI NGHIỆM GAME THÚ VỊ! 🎮**
