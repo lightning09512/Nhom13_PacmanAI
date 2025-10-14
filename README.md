@@ -1,9 +1,7 @@
 # 🎓 BÀI TẬP LỚN NHÓM 13 MÔN TRÍ TUỆ NHÂN TẠO
 ## Pacman AI Game - 18 Thuật toán AI
 
-![Pacman AI Demo](images/demo.gif)
-
-> **🚀 Trải nghiệm game Pacman với 18 thuật toán AI tiên tiến - từ tìm kiếm cơ bản đến học máy!**
+> **🚀 Trải nghiệm game Pacman với 18 thuật toán AI tiên tiến!**
 
 **Nhóm thực hiện:**  
 - **Nguyễn Minh Quốc Khánh** - MSSV: 23110113  
@@ -335,25 +333,6 @@ python main.py
 - **Efficiency**: Tốc độ và memory usage
 - **Game performance**: Hiệu quả trong game context
 - **Code readability**: Dễ hiểu và maintain
-
----
-
-## 🔬 THUẬT TOÁN NỔI BẬT
-
-### 🥇 **A* (A-Star)**:
-- **Ưu điểm**: Tối ưu và hiệu quả nhất cho pathfinding
-- **Trong game**: Tìm đường ngắn nhất đến dots
-- **Heuristic**: Manhattan distance to target
-
-### 🥈 **Minimax với Alpha-Beta**:
-- **Ưu điểm**: Excellent cho ghost interaction
-- **Trong game**: Predict ghost moves, plan counters
-- **Depth**: Configurable search depth
-
-### 🥉 **Genetic Algorithm**:
-- **Ưu điểm**: Tìm strategy tối ưu cho toàn bộ level
-- **Trong game**: Evolve complete level solutions
-- **Evolution**: Mutation và crossover strategies
 
 ---
 
