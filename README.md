@@ -1,8 +1,11 @@
-# 🎓 BÀI TẬP LỚN CÁ NHÂN MÔN TRÍ TUỆ NHÂN TẠO
+# 🎓 BÀI TẬP LỚN NHÓM 13 MÔN TRÍ TUỆ NHÂN TẠO
 ## Pacman AI Game - 18 Thuật toán AI
 
-**Sinh viên thực hiện:** Nguyễn Minh Quốc Khánh  
-**MSSV:** 23110113  
+**Nhóm thực hiện:**  
+- **Nguyễn Minh Quốc Khánh** - MSSV: 23110113  
+- **Nguyễn Hưng Nguyên** - MSSV: 23110135  
+- **Nguyễn Bách Tùng** - MSSV: 23110166  
+
 **Lớp:** 251ARIN330585_05CLC  
 **Môn học:** Trí tuệ nhân tạo  
 **Giảng viên:** Phan Thị Huyền Trang  
@@ -292,34 +295,10 @@ python main.py
 ## 📞 LIÊN HỆ HỖ TRỢ
 
 Nếu gặp vấn đề khi chạy code hoặc cần giải thích thêm về thuật toán:
-- **Email**: [khanh.nguyen@student.edu.vn]
-- **MSSV**: 23110113
-- **Lớp**: 251ARIN330585_05CLC
+- **Nhóm 13**: Pacman AI Development Team
+- **Email nhóm**: [pacman.ai.group13@student.edu.vn]
 
 **Cảm ơn cô đã xem xét bài tập! 🙏**
-
----
-
-## 🔍 PHỤ LỤC: TECHNICAL DETAILS
-
-### System Requirements:
-- **Python**: 3.8 hoặc cao hơn
-- **Pygame**: 2.0+ 
-- **Memory**: Tối thiểu 256MB RAM
-- **Display**: Độ phân giải tối thiểu 640x700
-
-### Performance Benchmarks:
-- **BFS**: ~50ms average pathfinding
-- **A***: ~20ms average pathfinding  
-- **Minimax**: ~100ms per decision (depth 4)
-- **Genetic**: ~500ms initial evolution
-
-### Code Statistics:
-- **Total lines**: ~3000+ lines of code
-- **Files**: 10+ Python modules
-- **Classes**: 15+ classes
-- **Methods**: 100+ methods
-- **Comments**: Comprehensive Vietnamese documentation
 
 ---
 
