@@ -23,6 +23,9 @@ class PacmanAI:
         self.power_mode = False
         self.power_timer = 0
         self.algorithm = AIAlgorithm.BFS
+        # Trạng thái chống dao động
+        self.last_direction = None
+        self.recent_positions = deque(maxlen=8)
         
     def get_position(self):
         return (self.x, self.y)
@@ -39,6 +42,17 @@ class PacmanAI:
             if maze[new_y][new_x] != CellType.WALL:
                 self.x = new_x
                 self.y = new_y
+                # Cập nhật hướng và lịch sử để giảm lắc qua lại
+                if dx == 1 and dy == 0:
+                    self.direction = Direction.RIGHT
+                elif dx == -1 and dy == 0:
+                    self.direction = Direction.LEFT
+                elif dx == 0 and dy == -1:
+                    self.direction = Direction.UP
+                elif dx == 0 and dy == 1:
+                    self.direction = Direction.DOWN
+                self.last_direction = self.direction
+                self.recent_positions.append((self.x, self.y))
                 return True
         return False
     
@@ -64,43 +78,46 @@ class PacmanAI:
     
     def get_next_move(self, maze, ghosts):
         if self.algorithm == AIAlgorithm.BFS:
-            return self.bfs_move(maze)
+            chosen = self.bfs_move(maze)
         elif self.algorithm == AIAlgorithm.DFS:
-            return self.dfs_move(maze)
+            chosen = self.dfs_move(maze)
         elif self.algorithm == AIAlgorithm.UCS:
-            return self.ucs_move(maze)
+            chosen = self.ucs_move(maze)
         elif self.algorithm == AIAlgorithm.IDS:
-            return self.ids_move(maze)
+            chosen = self.ids_move(maze)
         elif self.algorithm == AIAlgorithm.IDL:
-            return self.idl_move(maze)
+            chosen = self.idl_move(maze)
         elif self.algorithm == AIAlgorithm.GREEDY:
-            return self.greedy_move(maze, ghosts)
+            chosen = self.greedy_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.A_STAR:
-            return self.a_star_move(maze, ghosts)
+            chosen = self.a_star_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.HILL_CLIMBING:
-            return self.hill_climbing_move(maze, ghosts)
+            chosen = self.hill_climbing_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.SIMULATED_ANNEALING:
-            return self.simulated_annealing_move(maze, ghosts)
+            chosen = self.simulated_annealing_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.BEAM_SEARCH:
-            return self.beam_search_move(maze, ghosts)
+            chosen = self.beam_search_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.MINIMAX:
-            return self.minimax_move(maze, ghosts)
+            chosen = self.minimax_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.ALPHA_BETA:
-            return self.alpha_beta_move(maze, ghosts)
+            chosen = self.alpha_beta_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.EXPECTIMAX:
-            return self.expectimax_move(maze, ghosts)
+            chosen = self.expectimax_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.AND_OR:
-            return self.and_or_planning_move(maze, ghosts)
+            chosen = self.and_or_planning_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.GENETIC:
-            return self.genetic_move(maze, ghosts)
+            chosen = self.genetic_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.BACKTRACKING:
-            return self.backtracking_move(maze, ghosts)
+            chosen = self.backtracking_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.FORWARD_CHECKING:
-            return self.forward_checking_move(maze, ghosts)
+            chosen = self.forward_checking_move(maze, ghosts)
         elif self.algorithm == AIAlgorithm.AC3:
-            return self.ac3_move(maze, ghosts)
+            chosen = self.ac3_move(maze, ghosts)
         else:
-            return self.first_valid_move(maze, ghosts)
+            chosen = self.first_valid_move(maze, ghosts)
+
+        # Áp dụng chống dao động
+        return self._anti_oscillation(chosen, maze)
     
     # ========== UNINFORMED SEARCH ALGORITHMS ==========
     
@@ -986,10 +1003,15 @@ class PacmanAI:
                 if (new_x, new_y) not in ghost_positions and not adjacent_ghost:
                     safe_moves.append(direction)
 
+        # Tie-breaking: ưu tiên hướng hiện tại và tránh đảo chiều
         if safe_moves:
-            return safe_moves[0]
+            ordered = self._prefer_continue(self._avoid_reverse_in_list(safe_moves))
+            if ordered:
+                return ordered[0]
         if valid_moves:
-            return valid_moves[0]
+            ordered = self._prefer_continue(self._avoid_reverse_in_list(valid_moves))
+            if ordered:
+                return ordered[0]
         return None
     
     def _is_valid_move(self, pos, maze):
@@ -1040,3 +1062,64 @@ class PacmanAI:
             score += self._evaluate_position(pos, [(g.x, g.y) for g in ghosts], maze)
         
         return score
+
+    # ========== ANTI-OSCILLATION HELPERS ==========
+
+    def _reverse_of(self, direction):
+        if direction == Direction.UP:
+            return Direction.DOWN
+        if direction == Direction.DOWN:
+            return Direction.UP
+        if direction == Direction.LEFT:
+            return Direction.RIGHT
+        if direction == Direction.RIGHT:
+            return Direction.LEFT
+        return None
+
+    def _avoid_reverse_in_list(self, moves):
+        """Loại bỏ hướng đảo chiều ngay nếu còn lựa chọn khác."""
+        if not moves:
+            return moves
+        if self.last_direction is None:
+            return list(moves)
+        reverse_dir = self._reverse_of(self.last_direction)
+        filtered = [m for m in moves if m != reverse_dir]
+        return filtered if filtered else list(moves)
+
+    def _prefer_continue(self, moves):
+        """Ưu tiên tiếp tục hướng hiện tại để giảm lắc qua lại."""
+        if not moves:
+            return moves
+        if self.last_direction and self.last_direction in moves:
+            return [self.last_direction] + [m for m in moves if m != self.last_direction]
+        return list(moves)
+
+    def _anti_oscillation(self, chosen, maze):
+        """Nếu move chọn là đảo chiều hoặc quay về vị trí vừa đi, chọn phương án khác nếu có."""
+        if chosen is None:
+            return None
+
+        if self.last_direction is None:
+            return chosen
+
+        dx, dy = chosen.value
+        next_pos = (self.x + dx, self.y + dy)
+
+        is_reverse = (chosen == self._reverse_of(self.last_direction))
+        just_came_from = (len(self.recent_positions) >= 1 and next_pos == self.recent_positions[-1])
+
+        if not is_reverse and not just_came_from:
+            return chosen
+
+        # Tìm lựa chọn thay thế
+        alternatives = []
+        for direction in Direction:
+            if direction == chosen:
+                continue
+            ndx, ndy = direction.value
+            nx, ny = self.x + ndx, self.y + ndy
+            if 0 <= nx < MAZE_WIDTH and 0 <= ny < MAZE_HEIGHT and maze[ny][nx] != CellType.WALL:
+                alternatives.append(direction)
+
+        alternatives = self._prefer_continue(self._avoid_reverse_in_list(alternatives))
+        return alternatives[0] if alternatives else chosen
