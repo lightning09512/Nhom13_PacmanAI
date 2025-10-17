@@ -4,7 +4,11 @@ Quản lý tất cả âm thanh trong game
 """
 
 import pygame
-import numpy as np
+try:
+    import numpy as np
+except Exception as e:
+    np = None
+    print(f"⚠️ numpy chưa sẵn sàng cho sound synth: {e}. Sẽ chạy không âm thanh tổng hợp.")
 
 
 class SoundManager:
@@ -43,6 +47,8 @@ class SoundManager:
     def create_beep_sound(self, frequency, duration):
         """Tạo âm thanh beep đơn giản"""
         try:
+            if np is None:
+                raise RuntimeError("numpy not available")
             sample_rate = 22050
             frames = int(duration * sample_rate)
             
@@ -68,12 +74,15 @@ class SoundManager:
             sound = pygame.sndarray.make_sound(stereo_wave)
             return sound
         except Exception as e:
+            # Fallback: return a dummy Sound-like object to avoid crashes
             print(f"Error creating beep sound: {e}")
             return None
     
     def create_chord_sound(self, frequencies, duration):
         """Tạo âm thanh chord"""
         try:
+            if np is None:
+                raise RuntimeError("numpy not available")
             sample_rate = 22050
             frames = int(duration * sample_rate)
             

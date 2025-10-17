@@ -4,7 +4,7 @@ Chứa class Ghost cho AI của ghost
 """
 
 import random
-from .constants import Direction, CellType, MAZE_WIDTH, MAZE_HEIGHT
+from constants import Direction, CellType, MAZE_WIDTH, MAZE_HEIGHT
 
 
 class Ghost:

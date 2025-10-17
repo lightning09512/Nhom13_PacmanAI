@@ -7,7 +7,7 @@ import random
 import math
 import heapq
 from collections import deque
-from .constants import (
+from constants import (
     Direction, CellType, AIAlgorithm,
     MAZE_WIDTH, MAZE_HEIGHT
 )

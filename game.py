@@ -9,10 +9,10 @@ import random
 import math
 import json
 import os
-from .constants import *
-from .sound_manager import SoundManager
-from .pacman import PacmanAI
-from .ghost import Ghost
+from constants import *
+from sound_manager import SoundManager
+from pacman import PacmanAI
+from ghost import Ghost
 
 class Game:
     def __init__(self):

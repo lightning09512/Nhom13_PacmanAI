@@ -7,24 +7,36 @@ Nhóm 13: Pacman AI Development Team
 import sys
 import os
 
-# Thêm thư mục cha vào Python path để import được module
+# Đảm bảo làm việc tại thư mục chứa file này để các đường dẫn tài nguyên tương đối hoạt động trên mọi máy
 current_dir = os.path.dirname(os.path.abspath(__file__))
-parent_dir = os.path.dirname(current_dir)
-sys.path.insert(0, parent_dir)
+os.chdir(current_dir)
+# Bổ sung vào sys.path để Pylance/Python tìm được module cục bộ 'game', 'constants', ...
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
 
 import pygame
 
-# Khởi tạo pygame
+# Khởi tạo pygame (an toàn trên máy không có thiết bị âm thanh)
 pygame.init()
-pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
-
-# Import game từ module cuoi_ky_ttnt
 try:
-    from Nhom13_PacmanAI.game import Game
+    pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
+except Exception as audio_err:
+    # Cho phép chạy không âm thanh nếu hệ thống không có thiết bị audio
+    print(f"⚠️ Không thể khởi tạo âm thanh: {audio_err}. Tiếp tục chạy không âm thanh.")
+
+# Import Game với 2 chế độ: chạy như script (from game) hoặc như package (Nhom13_PacmanAI.game) bằng importlib
+try:
+    from game import Game  # khi chạy: python main.py
 except ImportError:
-    print("❌ Lỗi: Không thể import module cuoi_ky_ttnt!")
-    print("Đảm bảo folder cuoi_ky_ttnt ở cùng cấp với Nhom13_PacmanAI")
-    sys.exit(1)
+    try:
+        import importlib
+        Game = importlib.import_module("Nhom13_PacmanAI.game").Game  # khi chạy: python -m Nhom13_PacmanAI.main
+    except Exception as imp_err:
+        print("❌ Lỗi: Không thể import module 'game'. Hãy đảm bảo bạn đang chạy từ thư mục dự án chứa file game.py")
+        print("Gợi ý chạy 1: python main.py")
+        print("Gợi ý chạy 2: python -m Nhom13_PacmanAI.main")
+        print(f"Chi tiết: {imp_err}")
+        sys.exit(1)
 
 
 def main():
